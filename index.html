@@ -48,30 +48,33 @@
 	<div class="margin-top-40">
 		<a href="#new" class="btn btn-success">Add New Book</a>
 	</div>
+
+	{{#each allBooks}}
 	<!--One Book-->
 	<div class="row margin-top-40">
 		<div class="col-sm-2">
-			<img src="https://s3-us-west-2.amazonaws.com/sandboxapi/to_kill_a_mockingbird.jpg" class="img-responsive" />
+			<img src="{{attributes.image}}" class="img-responsive" />
 		</div>
 		<div class="col-sm-8">
 			<div class="bold">
 				Information about this book:
 			</div>
 			<div class="margin-top-10">
-				Arun's Adventures
+				{{attributes.title}}
 			</div>
 			<div>
-				Arun Sood
+			{{attributes.author}}
 			</div>
 			<div>
-				Released on: January 15, 2014
+				{{attributes.release_date}}
 			</div>
 			<div class="margin-top-10">
-				<a href="#edit/1" class="btn btn-default">View More</a>
+				<a href="#edit/{{attributes.id}}" class="btn btn-default">View More</a>
 			</div>
 		</div>
 	</div>
 	<!--/One Book-->
+	{{/each}}
 </script>
 
 <script type="x-handlebars-template" id="edit-book-template">
@@ -83,29 +86,29 @@
 			Title
 		</div>
 		<div class="margin-top-10">
-			<input type="text" class="form-control" id="edit-title" value="{{bookInfo.title}}" />
+			<input type="text" class="form-control" id="edit-title" value="{{bookInfo.attributes.title}}" />
 		</div>
 		<div class="bold margin-top-10">
 			Author
 		</div>
 		<div class="margin-top-10">
-			<input type="text" class="form-control" id="edit-author" value="{{bookInfo.author}}" />
+			<input type="text" class="form-control" id="edit-author" value="{{bookInfo.attributes.author}}" />
 		</div>
 		<div class="bold margin-top-10">
 			Release Date
 		</div>
 		<div class="margin-top-10">
-			<input type="text" class="form-control" id="edit-release" value="{{bookInfo.release_date}}" />
+			<input type="text" class="form-control" id="edit-release" value="{{bookInfo.attributes.release_date}}" />
 		</div>
 		<div class="bold margin-top-10">
 			Image
 		</div>
 		<div class="margin-top-10">
-			<input type="text" class="form-control" id="edit-image" value="{{bookInfo.image}}" />
+			<input type="text" class="form-control" id="edit-image" value="{{bookInfo.attributes.image}}" />
 		</div>
 		<div class="margin-top-10 txt-right">
-			<a class="btn btn-danger" id="delete-book" data-id="{{bookInfo.id}}">Delete Book</a>
-			<a class="btn btn-primary" id="submit-book-edits" data-id="{{bookInfo.id}}">Submit Edits</a>
+			<a class="btn btn-danger delete-book" id="{{bookInfo.attributes.id}}" data-id="">Delete Book</a>
+			<a class="btn btn-primary submit-book-edits" id="{{bookInfo.attributes.id}}" data-id="">Submit Edits</a>
 		</div>
 	</div>
 </script>
